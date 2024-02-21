@@ -1,0 +1,5 @@
+1. Docker Image is built from dockerfile
+
+2. Docker Image build syntax:
+
+docker build -t image_name:tag_name dir 
