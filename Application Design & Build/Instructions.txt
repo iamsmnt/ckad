@@ -3,3 +3,23 @@
 2. Docker Image build syntax:
 
 docker build -t image_name:tag_name dir 
+
+
+###INSTRUCTION FOR CREATING A PYTHON Image
+
+a. Python part
+1. create a folder with the python script
+2. creat the Dockerfile there only
+
+b. Docker part
+1. get the required python image version from dockerhub
+2. create a dockerfile with all the required commands
+3. now cd to the same folder (assuming local docker setup)
+4. run the docker build command:
+- docker build -t image_name:tag_name .
+5. once the image is built run the image to see the python o/p
+- docker run image_name:tag_name
+6. push the image into dockerhub
+- docker push dockerhubid/image_name:tag_name
+7. deploy the image into kubernetes 
+- kubectl run <podname> --image=<path to the image>
