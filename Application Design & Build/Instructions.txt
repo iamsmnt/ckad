@@ -4,7 +4,7 @@
 
 docker build -t image_name:tag_name dir 
 
-
+    
 ###INSTRUCTION FOR CREATING A PYTHON Image
 
 a. Python part

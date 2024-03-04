@@ -1,0 +1,11 @@
+
+1. ENTRYPOINT: is an executable file which will define what is going to be executed as a part of the container
+also, default parameters that cannot be overridden when docker containers run with CLI parameters
+
+2. CMD: sets default parameter that can be overridden from the Command Line Interface when container is running,
+there should be a single CMD command within the Dockerfile,
+for instances where there are multiple CMD commands in a Dockerfile, all except the last one are ignored for an execution
+
+ex: CMD["executable", "parameter1", "parameter2"]
+
+in kubernetes the ENTRYPOINT and CMD can be overridden with argument and command files

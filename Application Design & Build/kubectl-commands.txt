@@ -1,0 +1,51 @@
+1. to get all the pods
+kubectl get pods <pod_name>
+
+2. to get wide output of all resources 
+kubectl get pods <pod_name> -o wide
+
+3. get the pod output in a yaml format
+kubectl get pods <pod_name> -o yaml
+
+4. get the pod output in a json format
+kubectl get pods <pod_name> -o json
+
+5. to describe pod
+kubectl describe pods <pod_name>
+
+6. to edit a pod after deployment
+kubectl edit pods <pod_name>
+
+7. check the logs of the pods
+kubectl logs pods <pod_name>
+
+8. delete the pod command
+kubectl delete pods <pod_name>
+
+9. to get the stats or 
+kubectl top pods
+
+
+------------PODS STATS----------------------
+10. list all the resources in kubernetes and it's cpu usage
+kubectl top pods --sort-by cpu
+
+11. sort the resources by memory consumption
+kubectl top pods --sort-by memory
+
+12. sort resources for all namespaces
+kubectl top pods --all-namespaces --sort-by memory
+
+13. to describe a particular value of a pod, Image value in this example
+kubectl describe pod <pod-name> | grep Image
+
+NOTE: by default the metrics resource will not be available in kubectl,
+so when we do kubectl get top pods it may give Metrics resource not available, 
+in such cases we may need to install the resources from Kubernetes SIGS: 
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+command:
+kubectl top pod -A --sort-by cpu
+
+These commands are true for all kubernetes resources not just pod!!
