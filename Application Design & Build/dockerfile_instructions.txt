@@ -9,3 +9,27 @@ for instances where there are multiple CMD commands in a Dockerfile, all except 
 ex: CMD["executable", "parameter1", "parameter2"]
 
 in kubernetes the ENTRYPOINT and CMD can be overridden with argument and command files
+
+example pod:
+
+apiVersion: v1
+kind: pod
+metadata:
+    name: <pod-name>
+    labels:
+        purpose: demonstrate-command
+spec:
+    containers:
+    - name: command-demo-container
+      image: debian
+      command: ["printenv"]                <-- ENTRYPOINT to container
+      args: ["HOSTNAME,"KUBERNETES_PORT"]  <-- command line arguments
+    restartPolicy: OnFailure
+
+
+3. to check if the command is okay to be executed
+kubectl run nginx-webapp --image=nginx:1.20 --dry-run=client
+
+4. extract the manifest/yaml file for the pod(or any resource) from the cli
+kubectl run nginx-webapp --image=nginx:1.20 --port=8080 --dry-run=client -o yaml
+

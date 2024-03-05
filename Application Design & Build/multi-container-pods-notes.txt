@@ -1,0 +1,27 @@
+1. all containers inside a multicontainer pod are connected with the same local network
+2. all containers inside a multicontainer pod share the same volume
+
+i.e; if you ssh into one of the container and install the netstat library, you can use the same library from another container as well
+which is becuase the containers share same volume
+
+if you do a wget from one container to the running port of another container then you can get the response from the other container
+as all containers inside the pod share same network
+
+
+There are usually 3 design patterns for multicontainer pods:
+
+1. sidecar pattern: there are usually 2 containers inside the pods, one will act as a main app container, 
+                    and another will be sidecar container which will add additional functionality to the main container,
+                    but the sidecar container will not affect the state of the main container
+
+                    example: application and log generations may supply the logs to splunk
+
+2. adapter pattern: there are usually 2 or more containers inside the pods, the application container will be responsible 
+                    for generating the data and other containers are responsible to further process that data
+
+3. ambassador pattern: two or more container, where the main application container will connect with the other container
+                       to connect with the external world
+
+                       example: main application and network proxy, proxy will connect with external databases
+                       not currently supported in k8s, now configmaps are used mostly
+
