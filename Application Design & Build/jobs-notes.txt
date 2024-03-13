@@ -1,0 +1,59 @@
+Job - job is used to execute ad-hoc tasks in kubernetes
+      job will execute until task is completed
+      job will also create a pod and mark it completed once complete
+      job will not delete the pod on job completion
+      user can extract logs from pod logs as job complete/fails
+      on deletion of job, associated pod also delete
+
+sample job yaml
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+ name: countdown
+spec:
+ template: ---> template of the pod 
+  metadata:
+   name: countdown
+  spec:
+   containers:
+   - name: counter
+     image: centos:7
+     command:
+      - "bin/bash"
+      - "-c"
+      - "for i in 9 8 7 6 5 4 3 2 1 ; do echo $i ; done"
+   restartPolicy: Never
+
+
+additional specs:
+
+completions: 5   ----> job will repeat itself for the completion, number of executions
+parallellism: 1   ---> define the number of parallel thread incase of multiple completions
+ttlSecondsAfterFinished: 100 ---> automatically cleanup the job after defined TTL
+activeDeadlineSeconds: 30  ----> if the process is not completed the job will execute infinite time, all running pods will be terminated
+and job status will marked failed 
+template:
+    metadata:
+
+
+CRON Job - allow you to perform a task at defined interval of time
+cron jobs are helpful to execute periodic and recurring tasks like taking backups, sending newsletter email etc.
+
+cron pattern are combination of 5 elements:
+
+minute       hour       dayofmonth        month       dayofweek
+(1-59)       (0-23)      (1-31)           (1-12)        (0-6)
+
+everymin
+*/1            *            *               *              *
+
+2.10 every Monday
+10             14           *               *              1
+
+Midnight 1sst and 15th day of the month
+0              0           1,15             *              *
+crontab.guru
+
+
+

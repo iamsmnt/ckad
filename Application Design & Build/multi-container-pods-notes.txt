@@ -25,3 +25,15 @@ There are usually 3 design patterns for multicontainer pods:
                        example: main application and network proxy, proxy will connect with external databases
                        not currently supported in k8s, now configmaps are used mostly
 
+Init container: its also a type of multicontainer pod, 
+
+init container is the one that starts and executes before other containers in the same pod, its preparing the environment
+init container meant to perform initialization logic for main application hosted on the pod, init container are usually executed in 
+sequence. an init container is not initialized unless its predecessor is completed successfully. 
+if any of the init container fails, the whole pod is restarted(unless restart policy is set to never).
+
+an init container is a good candidate for delaying the application initialization until one or more dependencies are available.
+the health and readiness probe cannot be used in init containers, because they are meant to start and exit successfully. 
+
+ex: if an application has db depency then we can put the db related initialization inside the init container. 
+
