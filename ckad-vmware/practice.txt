@@ -1,0 +1,9 @@
+#Execute a dry-run command to create, in yaml format, the resource definition for a 
+namespace named frontend. Write the yaml output to the file my-namespace.yaml.
+
+kubectl create ns frontend --dry-run=client -o yaml > frontend.yaml
+
+k create ns frontend $DR > my-namespace.yaml
+
+#Create a Pod named nginx in the namespace kubeacademy-w01-s053-apps, using the image bitnami/nginx.
+

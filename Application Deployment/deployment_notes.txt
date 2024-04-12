@@ -1,0 +1,39 @@
+#the four main deployment strategies in kubernetes deployments are:
+#1. Rolling update
+#2. Recreate
+#3. Blue/Green
+#4. Canary
+
+Labels: labels are key-value pairs that are attached to k8s objects, such as pods
+and services. They can be used to select and route traffic to different versions of a service.
+
+labels are intended to be used to specify identifying attributes of k8s objects.
+They are not intended for general use in the deployment process.
+
+labels can be attached to objects
+
+kubectl get pods --show-labels
+
+#defining pods with specific value:
+kubectl get pods -l key=value
+
+#add label to a resource
+kubectl label pods [pod-name] key=value
+
+#override existing labels
+kubectl label pods [pod-name] key=value --overwrite
+
+#remove pod label
+kubectl label pods [pod-name] key - 
+
+#command to identify rollout status
+kubectl rollout status deployment redis-deployment
+
+#list the history of the rollout of a deployment
+kubectl rollout history deployment redis-deployment
+
+#rollback deployment 
+kubectl rollout undo deployment redis-deployment --to-revision=1
+
+
+
